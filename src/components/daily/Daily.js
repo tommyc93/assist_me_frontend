@@ -3,9 +3,11 @@ import React, {useState, useContext} from 'react'
 import {DailyContext} from '../../context/DailyContext'
 import axios from 'axios'
 
-const Daily = () => {
+const Daily = (props) => {
     ///////////////---------Hook/States---------///////////////
     const [tasks, setTasks] = useContext(DailyContext)
+
+    ///////////////---------Function---------///////////////
 
     ///////////////---------Return---------///////////////
     return (
@@ -24,6 +26,7 @@ const Daily = () => {
                                 <summary>Note</summary>
                                 <h5>{daily.note}</h5>
                             </details>
+                            <button onClick={props.handleDelete} value={daily.id} class='btn btn-outline-danger'>Done</button>
                         </div>
                     </div>
                 )

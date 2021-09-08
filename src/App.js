@@ -25,6 +25,7 @@ const App = () => {
     let [currentUser, setCurrentUser] = useState(undefined)
     let [users, setUsers] = useState([])
     let [dailys, setDailys] = useState([])
+    let [tasks, setTasks] = useState([])
     ///////////////---------Functions---------///////////////
 
     //====Create====//
@@ -44,12 +45,26 @@ const App = () => {
                 getDaily()
             })
     }
+    const handleDeleted = (event) => {
+        axios
+            .delete('https://assist-me-backend.herokuapp.com/api/task' + event.target.value)
+            .then(() => {
+                getTask()
+            })
+    }
     //====Show====//
     const getDaily = () => {
         axios
             .get('https://assist-me-backend.herokuapp.com/api/daily')
             .then((response) => {
                 setDailys(response.data)
+            })
+    }
+    const getTask = () => {
+        axios
+            .get('https://assist-me-backend.herokuapp.com/api/task')
+            .then((response) => {
+                setTasks(response.data)
             })
     }
     //====Login====//
@@ -99,7 +114,9 @@ const App = () => {
                         />
                         }
                         {currentView == 'tasks' &&
-                        <Task />
+                        <Task
+                            handleDeleted={handleDeleted}
+                        />
                         }
                     </TaskProvider>
                     <DailyProvider>
@@ -109,7 +126,9 @@ const App = () => {
                         />
                         }
                         {currentView == 'tasks' &&
-                        <Daily />
+                        <Daily
+                            handleDelete={handleDelete}
+                        />
                         }
                     </DailyProvider>
                 </div>

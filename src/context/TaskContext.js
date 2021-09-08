@@ -5,6 +5,11 @@ import axios from 'axios'
 ///////////////---------Exports---------///////////////
 export const TaskContext = createContext()
 export const TaskProvider = (props) => {
+
+    ///////////////---------Hooks/State---------///////////////
+    const [tasks, setTasks] = useState([])
+
+    ///////////////---------Functions---------///////////////
     useEffect(() => {
         axios
             .get('https://assist-me-backend.herokuapp.com/api/task')
@@ -12,9 +17,6 @@ export const TaskProvider = (props) => {
                 setTasks(response.data)
             })
     })
-
-    ///////////////---------Hooks/State---------///////////////
-    const [tasks, setTasks] = useState([])
 
     ///////////////---------Return---------///////////////
     return (

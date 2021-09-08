@@ -25,6 +25,11 @@ const NavBar = (props) => {
                     <button class="btn btn-nav mx-auto" onClick={()=> {props.setCurrentView('tasks')}}>Tasks</button>
                 </li>
                 <li class="nav-item">
+                {props.currentUser &&
+                    <p>Welcome {props.currentUser.username}</p>
+                }
+                </li>
+                <li class="nav-item">
                  {props.currentUser ?
                     <>
                         <button className="btn btn-nav" onClick={()=> logOut()}>Log Out</button>

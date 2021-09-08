@@ -5,6 +5,11 @@ import axios from 'axios'
 ///////////////---------Exports---------///////////////
 export const DailyContext = createContext()
 export const DailyProvider = (props) => {
+
+    ///////////////---------Hooks/State---------///////////////
+    const [dailys, setDailys] = useState([])
+
+    ///////////////---------Functions---------///////////////
     useEffect(() => {
         axios
             .get('https://assist-me-backend.herokuapp.com/api/daily')
@@ -12,9 +17,6 @@ export const DailyProvider = (props) => {
                 setDailys(response.data)
             })
     })
-
-    ///////////////---------Hooks/State---------///////////////
-    const [dailys, setDailys] = useState([])
 
     ///////////////---------Return---------///////////////
     return (
