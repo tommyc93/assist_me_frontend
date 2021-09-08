@@ -15,6 +15,7 @@ const AddTask = (props) => {
     const plusTask = (event) => {
         event.preventDefault()
         setTasks([...tasks, task])
+        props.setCurrentView('tasks')
     }
     ///////////////---------Return---------///////////////
     return (

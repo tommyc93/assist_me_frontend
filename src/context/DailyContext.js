@@ -14,7 +14,7 @@ export const DailyProvider = (props) => {
         axios
             .get('https://assist-me-backend.herokuapp.com/api/daily')
             .then((response) => {
-                response.data
+                setDailys(response.data)
             })
     }
 

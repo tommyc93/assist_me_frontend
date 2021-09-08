@@ -14,7 +14,7 @@ export const TaskProvider = (props) => {
         axios
             .get('https://assist-me-backend.herokuapp.com/api/task')
             .then((response) => {
-                response.data
+                setTasks(response.data)
             })
     }
 
@@ -28,7 +28,7 @@ export const TaskProvider = (props) => {
 
     ///////////////---------Return---------///////////////
     return (
-        <TaskContext.Provider value={[tasks, setTasksm, getTask]}>
+        <TaskContext.Provider value={[tasks, setTasks, getTask]}>
             {props.children}
         </TaskContext.Provider>
     )
