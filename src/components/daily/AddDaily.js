@@ -6,7 +6,7 @@ import axios from 'axios'
 const AddDaily = (props) => {
     ///////////////---------Hook/States---------///////////////
     const [task, setTask] = useState({name:'', time:'', note:'', due:''})
-    const [tasks, setTasks] = useContext(DailyContext)
+    const [tasks, setTasks, getDaily] = useContext(DailyContext)
     ///////////////---------Functions---------///////////////
     const handleChange = (event) => {
         setTask({...task, [event.target.name]: event.target.value})
@@ -15,6 +15,11 @@ const AddDaily = (props) => {
     const plusTask = (event) => {
         event.preventDefault()
         setTasks([...tasks, task])
+        axios
+            .post('https://assist-me-backend.herokuapp.com/api/daily')
+            .then((response) => {
+                getDaily()
+            })
     }
     ///////////////---------Return---------///////////////
     return (
