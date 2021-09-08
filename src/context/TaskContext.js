@@ -10,6 +10,14 @@ export const TaskProvider = (props) => {
     const [tasks, setTasks] = useState([])
 
     ///////////////---------Functions---------///////////////
+    const getTask = () => {
+        axios
+            .get('https://assist-me-backend.herokuapp.com/api/task')
+            .then((response) => {
+                response.data
+            })
+    }
+
     useEffect(() => {
         axios
             .get('https://assist-me-backend.herokuapp.com/api/task')
@@ -20,7 +28,7 @@ export const TaskProvider = (props) => {
 
     ///////////////---------Return---------///////////////
     return (
-        <TaskContext.Provider value={[tasks, setTasks]}>
+        <TaskContext.Provider value={[tasks, setTasksm getTask]}>
             {props.children}
         </TaskContext.Provider>
     )

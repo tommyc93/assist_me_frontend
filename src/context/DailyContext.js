@@ -10,6 +10,14 @@ export const DailyProvider = (props) => {
     const [dailys, setDailys] = useState([])
 
     ///////////////---------Functions---------///////////////
+    const getDaily = () => {
+        axios
+            .get('https://assist-me-backend.herokuapp.com/api/daily')
+            .then((response) => {
+                response.data
+            })
+    }
+
     useEffect(() => {
         axios
             .get('https://assist-me-backend.herokuapp.com/api/daily')
@@ -20,7 +28,7 @@ export const DailyProvider = (props) => {
 
     ///////////////---------Return---------///////////////
     return (
-        <DailyContext.Provider value={[dailys, setDailys]}>
+        <DailyContext.Provider value={[dailys, setDailys, getDaily]}>
             {props.children}
         </DailyContext.Provider>
     )
