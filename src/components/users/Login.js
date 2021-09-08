@@ -10,7 +10,6 @@ const Login = (props) => {
     const validateLogin = (e) => {
         e.preventDefault()
         setErrorMessage(null)
-
         axios.put(
           'https://assist-me-backend.herokuapp.com/api/users/login',
           {
@@ -18,7 +17,7 @@ const Login = (props) => {
             password:loginPassword
           }
         ).then((response) => {
-            if (response.data.username !== undefined){
+            if (response.data.username != undefined){
                 props.setCurrentUser(response.data)
                 props.setCurrentView('tasks')
             } else {

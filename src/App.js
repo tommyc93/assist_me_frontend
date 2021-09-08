@@ -14,6 +14,14 @@ import {TaskProvider} from './context/TaskContext'
 import Daily from './components/daily/Daily'
 import AddDaily from './components/daily/AddDaily'
 import {DailyProvider} from './context/DailyContext'
+//====Budget====//
+import Budget from './components/budget/Budget'
+import AddBudget from './components/budget/AddBudget'
+import {BudgetProvider} from './context/BudgetContext'
+//====Expense====//
+import Expense from './components/expense/Expense'
+import AddExpense from './components/expense/AddExpense'
+import {ExpenseProvider} from './context/ExpenseContext'
 //====Login====//
 import CreateUser from './components/users/CreateUser'
 import Login from './components/users/Login'
@@ -26,6 +34,7 @@ const App = () => {
     let [users, setUsers] = useState([])
     let [dailys, setDailys] = useState([])
     let [tasks, setTasks] = useState([])
+    const income = 80000
     ///////////////---------Functions---------///////////////
 
     //====Create====//
@@ -132,6 +141,30 @@ const App = () => {
                         />
                         }
                     </DailyProvider>
+                    <BudgetProvider>
+                        {currentView == 'addBudget' &&
+                        <AddBudget
+                            setCurrentView={setCurrentView}
+                        />
+                        }
+                        {currentView == 'budgets' &&
+                        <Budget
+                            handleDeleted={handleDeleted}
+                        />
+                        }
+                    </BudgetProvider>
+                    <ExpenseProvider>
+                        {currentView == 'addExpense' &&
+                        <AddExpense
+                            setCurrentView={setCurrentView}
+                        />
+                        }
+                        {currentView == 'budgets' &&
+                        <Expense
+                            handleDelete={handleDelete}
+                        />
+                        }
+                    </ExpenseProvider>
                 </div>
             </div>
             </div>

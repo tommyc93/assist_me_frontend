@@ -7,6 +7,7 @@ const AddTask = (props) => {
     ///////////////---------Hook/States---------///////////////
     const [task, setTask] = useState({name: '', time: '', note: ''})
     const [tasks, setTasks, getTask] = useContext(TaskContext)
+    
     ///////////////---------Functions---------///////////////
     const handleChange = (event) => {
         setTask({...task, [event.target.name]: event.target.value})
@@ -25,6 +26,7 @@ const AddTask = (props) => {
     ///////////////---------Return---------///////////////
     return (
         <div class='mb-3 w-50 mx-auto'>
+            <h2>Add Daily Tasks</h2>
             <form onSubmit={plusTask}>
                 <label htmlFor='name' class='form-label'>Name: </label>
                 <input type='text' name='name' class='form-control'onChange={handleChange}/>

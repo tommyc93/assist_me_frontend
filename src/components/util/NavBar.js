@@ -14,15 +14,25 @@ const NavBar = (props) => {
             <ul class="navbar-nav nav-fill w-100">
                 <li class="nav-item dropdown">
                     <button class="btn btn-link nav-link dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                        Add</button>
+                        Add Tasks</button>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" onClick={()=> {props.setCurrentView('addTask')}}>Add Task</a></li>
                         <li><hr class="dropdown-divider" /></li>
                         <li><a class="dropdown-item" onClick={()=> {props.setCurrentView('addDaily')}}>Add To Do's</a></li>
                     </ul>
                 </li>
+                <li class="nav-item dropdown">
+                    <button class="btn btn-link nav-link dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        Add Budget</button>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" onClick={()=> {props.setCurrentView('addBudget')}}>Add Monthly Expense</a></li>
+                        <li><hr class="dropdown-divider" /></li>
+                        <li><a class="dropdown-item" onClick={()=> {props.setCurrentView('addExpense')}}>Add Daily Expense</a></li>
+                    </ul>
+                </li>
                 <li class='nav-item'>
                     <button class="btn btn-nav mx-auto" onClick={()=> {props.setCurrentView('tasks')}}>Tasks</button>
+                    <button class="btn btn-nav mx-auto" onClick={()=> {props.setCurrentView('budgets')}}>Budget</button>
                 </li>
                 <li class="nav-item">
                 {props.currentUser &&
