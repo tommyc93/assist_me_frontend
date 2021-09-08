@@ -37,45 +37,6 @@ const App = () => {
     const income = 80000
     ///////////////---------Functions---------///////////////
 
-    //====Create====//
-    const handleCreate = (addDaily) => {
-        axios
-            .post('https://assist-me-backend.herokuapp.com/api/daily', addDaily)
-            .then((response) => {
-                console.log(response)
-                getDaily()
-            })
-    }
-    //====Delete====//
-    const handleDelete = (event) => {
-        axios
-            .delete('https://assist-me-backend.herokuapp.com/api/daily' + event.target.value)
-            .then(() => {
-                getDaily()
-            })
-    }
-    const handleDeleted = (event) => {
-        axios
-            .delete('https://assist-me-backend.herokuapp.com/api/task' + event.target.value)
-            .then(() => {
-                getTask()
-            })
-    }
-    //====Show====//
-    const getDaily = () => {
-        axios
-            .get('https://assist-me-backend.herokuapp.com/api/daily')
-            .then((response) => {
-                setDailys(response.data)
-            })
-    }
-    const getTask = () => {
-        axios
-            .get('https://assist-me-backend.herokuapp.com/api/task')
-            .then((response) => {
-                setTasks(response.data)
-            })
-    }
     //====Login====//
     const getUsers = () => {
         axios
@@ -86,8 +47,6 @@ const App = () => {
     }
 
     useEffect(() => {
-        getDaily()
-        getTask()
         getUsers()
     }, [])
     ///////////////---------Return---------///////////////
@@ -124,9 +83,7 @@ const App = () => {
                         />
                         }
                         {currentView == 'tasks' &&
-                        <Task
-                            handleDeleted={handleDeleted}
-                        />
+                        <Task/>
                         }
                     </TaskProvider>
                     <DailyProvider>
@@ -136,9 +93,7 @@ const App = () => {
                         />
                         }
                         {currentView == 'tasks' &&
-                        <Daily
-                            handleDelete={handleDelete}
-                        />
+                        <Daily/>
                         }
                     </DailyProvider>
                     <BudgetProvider>
@@ -148,9 +103,7 @@ const App = () => {
                         />
                         }
                         {currentView == 'budgets' &&
-                        <Budget
-                            handleDeleted={handleDeleted}
-                        />
+                        <Budget/>
                         }
                     </BudgetProvider>
                     <ExpenseProvider>
@@ -160,9 +113,7 @@ const App = () => {
                         />
                         }
                         {currentView == 'budgets' &&
-                        <Expense
-                            handleDelete={handleDelete}
-                        />
+                        <Expense/>
                         }
                     </ExpenseProvider>
                 </div>

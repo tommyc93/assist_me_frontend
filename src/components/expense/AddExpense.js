@@ -15,9 +15,9 @@ const AddExpense = (props) => {
     const plusExpense = (event) => {
         event.preventDefault()
         setExpenses([...expenses, expense])
-        props.setCurrentView('tasks')
+        props.setCurrentView('budgets')
         axios
-            .post('https://assist-me-backend.herokuapp.com/api/expense', event)
+            .post('https://assist-me-backend.herokuapp.com/api/expense', expense)
             .then((response) => {
                 getExpense()
             })

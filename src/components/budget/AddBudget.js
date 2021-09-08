@@ -15,9 +15,9 @@ const AddBudget = (props) => {
     const plusBudget = (event) => {
         event.preventDefault()
         setBudgets([...budgets, budget])
-        props.setCurrentView('tasks')
+        props.setCurrentView('budgets')
         axios
-            .post('https://assist-me-backend.herokuapp.com/api/budget', event)
+            .post('https://assist-me-backend.herokuapp.com/api/budget', budget)
             .then((response) => {
                 getBudget()
             })

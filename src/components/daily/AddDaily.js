@@ -17,7 +17,7 @@ const AddDaily = (props) => {
         setTasks([...tasks, task])
         props.setCurrentView('tasks')
         axios
-            .post('https://assist-me-backend.herokuapp.com/api/daily', event)
+            .post('https://assist-me-backend.herokuapp.com/api/daily', task)
             .then((response) => {
                 getDaily()
             })

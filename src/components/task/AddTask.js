@@ -7,7 +7,7 @@ const AddTask = (props) => {
     ///////////////---------Hook/States---------///////////////
     const [task, setTask] = useState({name: '', time: '', note: ''})
     const [tasks, setTasks, getTask] = useContext(TaskContext)
-    
+
     ///////////////---------Functions---------///////////////
     const handleChange = (event) => {
         setTask({...task, [event.target.name]: event.target.value})
@@ -18,7 +18,7 @@ const AddTask = (props) => {
         setTasks([...tasks, task])
         props.setCurrentView('tasks')
         axios
-            .post('https://assist-me-backend.herokuapp.com/api/task', event)
+            .post('https://assist-me-backend.herokuapp.com/api/task', task)
             .then((response) => {
                 getTask()
             })
