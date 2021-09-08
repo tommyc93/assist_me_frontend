@@ -5,8 +5,8 @@ import axios from 'axios'
 
 const AddTask = (props) => {
     ///////////////---------Hook/States---------///////////////
-    const [task, setTask] = useState({name:'', time:'', note:''})
-    const [tasks, setTasks] = useContext(TaskContext)
+    const [task, setTask] = useState({name: '', time: '', note: ''})
+    const [tasks, setTasks, getTask] = useContext(TaskContext)
     ///////////////---------Functions---------///////////////
     const handleChange = (event) => {
         setTask({...task, [event.target.name]: event.target.value})
@@ -16,6 +16,11 @@ const AddTask = (props) => {
         event.preventDefault()
         setTasks([...tasks, task])
         props.setCurrentView('tasks')
+        axios
+            .post('https://assist-me-backend.herokuapp.com/api/task', event)
+            .then((response) => {
+                getTask()
+            })
     }
     ///////////////---------Return---------///////////////
     return (
@@ -24,7 +29,7 @@ const AddTask = (props) => {
                 <label htmlFor='name' class='form-label'>Name: </label>
                 <input type='text' name='name' class='form-control'onChange={handleChange}/>
                 <label htmlFor='time' class='form-label'>Hours: </label>
-                <input type='number' name='time' class='form-control' onchange={handleChange}/>
+                <input type='number' name='time' class='form-control' onChange={handleChange}/>
                 <label htmlFor='note' class='form-label'>Note: </label>
                 <textarea type='text' name='note' class='form-control'onChange={handleChange}/>
                 <input type='submit' class='btn btn-outline-dark' />

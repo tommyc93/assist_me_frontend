@@ -18,9 +18,6 @@ const CreateUser = (props) => {
         passwordChange: (e) => {
             setNewPassword(e.target.value)
         },
-        useChange: (e) => {
-            setNewUse(e.target.value)
-        }
     }
 
     const handleNewUserCreation = (event) => {

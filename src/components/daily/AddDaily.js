@@ -5,7 +5,7 @@ import axios from 'axios'
 
 const AddDaily = (props) => {
     ///////////////---------Hook/States---------///////////////
-    const [task, setTask] = useState({name:'', time:'', note:'', due:''})
+    const [task, setTask] = useState({name: '', time: '', note: '', due: ''})
     const [tasks, setTasks, getDaily] = useContext(DailyContext)
     ///////////////---------Functions---------///////////////
     const handleChange = (event) => {
@@ -17,7 +17,7 @@ const AddDaily = (props) => {
         setTasks([...tasks, task])
         props.setCurrentView('tasks')
         axios
-            .post('https://assist-me-backend.herokuapp.com/api/daily')
+            .post('https://assist-me-backend.herokuapp.com/api/daily', event)
             .then((response) => {
                 getDaily()
             })
@@ -29,11 +29,11 @@ const AddDaily = (props) => {
                 <label htmlFor='name' class='form-label'>Name: </label>
                 <input type='text' name='name' class='form-control'onChange={handleChange}/>
                 <label htmlFor='time' class='form-label'>Hours: </label>
-                <input type='number' name='time' class='form-control' onchange={handleChange}/>
+                <input type='number' name='time' class='form-control' onChange={handleChange}/>
                 <label htmlFor='note' class='form-label'>Note: </label>
                 <textarea type='text' name='note' class='form-control'onChange={handleChange}/>
                 <label htmlFor='due' class='form-label'>Date: </label>
-                <input type='date' name='due' class='form-control' onchange={handleChange}/>
+                <input type='date' name='due' class='form-control' onChange={handleChange}/>
                 <input type='submit' class='btn btn-outline-dark' />
             </form>
         </div>
