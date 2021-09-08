@@ -5,10 +5,20 @@ import axios from 'axios'
 
 const Task = (props) => {
     ///////////////---------Hook/States---------///////////////
-    const [tasks, setTasks] = useContext(TaskContext)
+    const [tasks, setTasks, getTask] = useContext(TaskContext)
     const [sum, setSum] = useState(0)
 
     ///////////////---------Function---------///////////////
+    //====Delete====//
+    const handleDelete = (data) => {
+        axios
+            .delete(`https://assist-me-backend.herokuapp.com/api/task/${data.id}`)
+            .then(() => {
+              getTask();
+            })
+    }
+
+    //====Total====//
     const addSum = () => {
         let total = 0
         for(let i = 0; i < tasks.length; i++){
@@ -38,7 +48,7 @@ const Task = (props) => {
                                 <summary>Note</summary>
                                 <h5>{task.note}</h5>
                             </details>
-                            <button onClick={props.handleDeleted} value={task.id} class='btn btn-outline-danger'>Done</button>
+                            <button onClick={() => handleDelete(task)} class='btn btn-outline-danger'>Done</button>
                         </div>
                     </div>
                 )

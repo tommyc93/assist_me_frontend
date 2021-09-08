@@ -5,10 +5,20 @@ import axios from 'axios'
 
 const Expense = (props) => {
     ///////////////---------Hook/States---------///////////////
-    const [expenses, setExpenses] = useContext(ExpenseContext)
+    const [expenses, setExpenses, getExpense] = useContext(ExpenseContext)
     const [sum, setSum] = useState(0)
 
     ///////////////---------Function---------///////////////
+    //====Delete====//
+    const handleDelete = (data) => {
+        axios
+            .delete(`https://assist-me-backend.herokuapp.com/api/expense/${data.id}`)
+            .then(() => {
+              getExpense();
+            })
+    }
+
+    //====Total====//
     const addSum = () => {
         let total = 0
         for(let i = 0; i < expenses.length; i++){
@@ -38,7 +48,7 @@ const Expense = (props) => {
                                 <summary>Note</summary>
                                 <h5>{expense.note}</h5>
                             </details>
-                            <button onClick={props.handleDelete} value={expense.id} class='btn btn-outline-danger'>Delete</button>
+                            <button onClick={() => handleDelete(expense)} class='btn btn-outline-danger'>Delete</button>
                         </div>
                     </div>
                 )

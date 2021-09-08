@@ -5,10 +5,20 @@ import axios from 'axios'
 
 const Daily = (props) => {
     ///////////////---------Hook/States---------///////////////
-    const [tasks, setTasks] = useContext(DailyContext)
+    const [tasks, setTasks, getDaily] = useContext(DailyContext)
     const [sum, setSum] = useState(0)
 
     ///////////////---------Function---------///////////////
+    //====Delete====//
+    const handleDelete = (data) => {
+        axios
+            .delete(`https://assist-me-backend.herokuapp.com/api/daily/${data.id}`)
+            .then(() => {
+              getDaily();
+            })
+    }
+
+    //====Total====//
     const addSum = () => {
         let total = 0
         for(let i = 0; i < tasks.length; i++){
@@ -39,7 +49,7 @@ const Daily = (props) => {
                                 <summary>Note</summary>
                                 <h5>{daily.note}</h5>
                             </details>
-                            <button onClick={props.handleDelete} value={daily.id} class='btn btn-outline-danger'>Done</button>
+                            <button onClick={() => handleDelete(daily)} class='btn btn-outline-danger'>Done</button>
                         </div>
                     </div>
                 )
