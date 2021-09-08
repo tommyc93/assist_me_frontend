@@ -13,6 +13,16 @@ const EditTask = (props) => {
         setTask({...task, [event.target.name]: event.target.value})
     }
 
+    const changeTask = (event) => {
+        event.preventDefault()
+        setTasks([...tasks, task])
+        props.setCurrentView('tasks')
+        axios
+            .put('https://assist-me-backend.herokuapp.com/api/task', task)
+            .then((response) => {
+                getTask()
+            })
+    }
     ///////////////---------Return---------///////////////
     return (
         <>
