@@ -41,3 +41,45 @@ img {
     max-width: 60%;
     max-height: 60%;
 }
+
+.flex-even {
+  max-width: 60vh;
+  border-radius: .5rem;
+  margin: 1em;
+  box-shadow: 3px 3px 5px var(--black);
+  transition: .05s;
+}
+
+.flex-even:hover {
+    cursor: pointer;
+    transform: translate(3px, 3px);
+    box-shadow: none;
+}
+
+.s-image {
+  width: 100%;
+  max-width: 100%;
+}
+
+hr {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.App {
+  text-align: center;
+}
+
+.todo {
+    background-color: lightgreen;
+}
+
+.tasks {
+    background-color: skyblue;
+}
+
+body{
+  background-image: linear-gradient(to bottom right, #222a33c7, white);
+}

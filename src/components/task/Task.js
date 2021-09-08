@@ -9,7 +9,8 @@ const Task = () => {
 
     ///////////////---------Return---------///////////////
     return (
-        <div class='card flex-even'>
+        <div class='card flex-even tasks'>
+        <h1>Daily Tasks</h1>
             {tasks.map((task) => {
                 return (
                     <div class='card flex-even'>
@@ -18,11 +19,9 @@ const Task = () => {
                         </div>
                         <div class='card-body'>
                             <p>Hours: {task.time}</p>
-                        </div>
-                        <div class='card-footer'>
                             <details>
                                 <summary>Note</summary>
-                                <p>{task.note}</p>
+                                <h5>{task.note}</h5>
                             </details>
                         </div>
                     </div>

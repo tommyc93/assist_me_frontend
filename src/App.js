@@ -10,34 +10,111 @@ import Banner from './components/util/Banner'
 import Task from './components/task/Task'
 import AddTask from './components/task/AddTask'
 import {TaskProvider} from './context/TaskContext'
+//====Daily====//
+import Daily from './components/daily/Daily'
+import AddDaily from './components/daily/AddDaily'
+import {DailyProvider} from './context/DailyContext'
 //====Login====//
-// import CreateUser from './components/users/CreateUser'
-// import Login from './components/users/Login'
+import CreateUser from './components/users/CreateUser'
+import Login from './components/users/Login'
 
 
 const App = () => {
     ///////////////---------Hook/States---------///////////////
     let [currentView, setCurrentView] = useState(['showTasks'])
+    let [currentUser, setCurrentUser] = useState(undefined)
+    let [users, setUsers] = useState([])
+    let [dailys, setDailys] = useState([])
     ///////////////---------Functions---------///////////////
 
+    //====Create====//
+    const handleCreate = (addDaily) => {
+        axios
+            .post('https://assist-me-backend.herokuapp.com/api/daily', addDaily)
+            .then((response) => {
+                console.log(response)
+                getDaily()
+            })
+    }
+    //====Delete====//
+    const handleDelete = (event) => {
+        axios
+            .delete('https://assist-me-backend.herokuapp.com/api/daily' + event.target.value)
+            .then(() => {
+                getDaily()
+            })
+    }
+    //====Show====//
+    const getDaily = () => {
+        axios
+            .get('https://assist-me-backend.herokuapp.com/api/daily')
+            .then((response) => {
+                setDailys(response.data)
+            })
+    }
+    //====Login====//
+    const getUsers = () => {
+        axios
+            .get('https://assist-me-backend.herokuapp.com/api/users')
+            .then((response) => {
+                setUsers(response.data)
+            })
+    }
+
+    useEffect(() => {
+        getDaily()
+        getUsers()
+    }, [])
     ///////////////---------Return---------///////////////
     return (
         <>
-
             <Banner />
             <NavBar
                 setCurrentView={setCurrentView}
+                getUsers={getUsers}
+                currentUser={currentUser}
+                setCurrentUser={setCurrentUser}
             />
-            <TaskProvider>
-                {currentView == 'addTask' &&
-                <AddTask
-                    setCurrentView={setCurrentView}
-                />
-                }
-                {currentView == 'tasks' &&
-                <Task />
-                }
-            </TaskProvider>
+            <div class='container'>
+            <div class='mx-auto text-center'>
+                <div class='row'>
+                    {currentView == 'signUp' &&
+                        <CreateUser
+                            setCurrentUser={setCurrentUser}
+                            setCurrentView={setCurrentView}
+                            getUsers={getUsers}
+                        />
+                    }
+                    {currentView == 'logIn' &&
+                        <Login
+                            setCurrentUser={setCurrentUser}
+                            setCurrentView={setCurrentView}
+                            users={users}
+                        />
+                    }
+                    <TaskProvider>
+                        {currentView == 'addTask' &&
+                        <AddTask
+                            setCurrentView={setCurrentView}
+                        />
+                        }
+                        {currentView == 'tasks' &&
+                        <Task />
+                        }
+                    </TaskProvider>
+                    <DailyProvider>
+                        {currentView == 'addDaily' &&
+                        <AddDaily
+                            setCurrentView={setCurrentView}
+                        />
+                        }
+                        {currentView == 'tasks' &&
+                        <Daily />
+                        }
+                    </DailyProvider>
+                </div>
+            </div>
+            </div>
         </>
     )
 }
