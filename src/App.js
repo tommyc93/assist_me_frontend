@@ -78,6 +78,7 @@ const App = () => {
 
     useEffect(() => {
         getDaily()
+        getTask()
         getUsers()
     }, [])
     ///////////////---------Return---------///////////////

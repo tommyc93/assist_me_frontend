@@ -3,8 +3,8 @@ import axios from 'axios'
 
 const Login = (props) => {
 
-    let [logInUsername, setLogInUsername] = useState('')
-    let [logInPassword, setLogInPassword] = useState('')
+    let [loginUsername, setLoginUsername] = useState('')
+    let [loginPassword, setLoginPassword] = useState('')
     let [errorMessage, setErrorMessage] = useState('')
 
     const validateLogin = (e) => {
@@ -14,8 +14,8 @@ const Login = (props) => {
         axios.put(
           'https://assist-me-backend.herokuapp.com/api/users/login',
           {
-            username:logInUsername,
-            password:logInPassword
+            username:loginUsername,
+            password:loginPassword
           }
         ).then((response) => {
             if (response.data.username != undefined){
@@ -28,11 +28,11 @@ const Login = (props) => {
     }
 
     const handleChangeUsername = (e) => {
-        setLogInUsername(e.target.value)
+        setLoginUsername(e.target.value)
     }
 
     const handleChangePassword = (e) => {
-        setLogInPassword(e.target.value)
+        setLoginPassword(e.target.value)
     }
 
     return (
