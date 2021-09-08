@@ -1,5 +1,5 @@
 ///////////////---------Imports---------///////////////
-import React, {useState, useContext} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import {ExpenseContext} from '../../context/ExpenseContext'
 import axios from 'axios'
 
@@ -9,13 +9,17 @@ const Expense = (props) => {
     const [sum, setSum] = useState(0)
 
     ///////////////---------Function---------///////////////
-    const addSum = (budgets) => {
+    const addSum = () => {
         let total = 0
-        for(let i = 0; i < budgets.length; i++){
-            total += budgets[i].cost
+        for(let i = 0; i < expenses.length; i++){
+            total += expenses[i].cost
         }
         setSum(total)
     }
+
+    useEffect(() => {
+        addSum()
+    }, [])
 
     ///////////////---------Return---------///////////////
     return (

@@ -9,13 +9,17 @@ const Budget = (props) => {
     const [sum, setSum] = useState(0)
 
     ///////////////---------Function---------///////////////
-    const addSum = (budgets) => {
+    const addSum = () => {
         let total = 0
         for(let i = 0; i < budgets.length; i++){
             total += budgets[i].cost
         }
         setSum(total)
     }
+
+    useEffect(() => {
+        addSum()
+    }, [])
 
     ///////////////---------Return---------///////////////
     return (
