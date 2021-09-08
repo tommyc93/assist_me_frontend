@@ -6,13 +6,22 @@ import axios from 'axios'
 const Expense = (props) => {
     ///////////////---------Hook/States---------///////////////
     const [expenses, setExpenses] = useContext(ExpenseContext)
+    const [sum, setSum] = useState(0)
 
     ///////////////---------Function---------///////////////
+    const addSum = (budgets) => {
+        let total = 0
+        for(let i = 0; i < budgets.length; i++){
+            total += budgets[i].cost
+        }
+        setSum(total)
+    }
 
     ///////////////---------Return---------///////////////
     return (
         <div class='card flex-even todo'>
         <h1>Daily Expenses</h1>
+        <h4>Total Spending ${sum}</h4>
             {expenses.map((expense) => {
                 return (
                     <div class='card flex-even'>
